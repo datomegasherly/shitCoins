@@ -1,0 +1,40 @@
+html
+    head
+        title= "Create"
+        link(rel="stylesheet", href="/css/bootstrap.min.css")
+        script(src="/js/bootstrap.bundle.min.js")
+    body
+        div(style="padding-top: 50px")
+            if isPost.error 
+                div(class="alert alert-danger", style="margin: 10px")
+                    strong= "Error in Submit"
+            else if isPost.success
+                div(class="alert alert-success", style="margin: 10px")
+                    strong= "Successfully created "
+                        a(href="/create")= "Create New"
+            if isPost && !isPost.success
+                form(action="/create", method="post", class="form-control")
+                    div(class="container")
+                        div(class="row")
+                            div(class="col-3")
+                            div(class="col-6", style="border: 1px solid;padding: 5px")
+                                div(style="margin-top: 5px;margin-bottom: 5px",class="row")
+                                    div(class="col-sm-4")
+                                        div= "Name:"
+                                    div(class="col-sm-8")
+                                        input(type="text", value="",class="form-control", name="name")
+                                div(style="margin-top: 5px;margin-bottom: 5px",class="row")
+                                    div(class="col-sm-4")
+                                        div= "Contract:"
+                                    div(class="col-sm-8")
+                                        input(type="text", value="",class="form-control", name="contract")
+                                div(style="margin-top: 5px;margin-bottom: 5px",class="row")
+                                    div(class="col-sm-4")
+                                        div= "Name:"
+                                    div(class="col-sm-8")
+                                        input(type="datetime-local",class="form-control", name="date")
+                                div(style="margin-top: 5px;margin-bottom: 5px",class="row")
+                                    div(class="col-sm-12")
+                                        button(class="btn btn-primary", type="submit")= "Create"
+                            div(class="col-3")
+

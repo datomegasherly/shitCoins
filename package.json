@@ -1,0 +1,30 @@
+{
+  "name": "shitCoins",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/datomegasherly/shitCoins.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/datomegasherly/shitCoins/issues"
+  },
+  "homepage": "https://github.com/datomegasherly/shitCoins#readme",
+  "devDependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.4"
+  },
+  "dependencies": {
+    "pug": "^3.0.2"
+  }
+}
