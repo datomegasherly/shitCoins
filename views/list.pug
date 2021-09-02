@@ -5,33 +5,37 @@ html
         script(src="/js/bootstrap.bundle.min.js")
         script(src="/js/updateTime.js")
     body
-        div(class="col-2")
-        div(class="col-8")
-            table(class="table table-striped table-hover")
-                thead
-                    tr
-                        th= "Name"
-                        th= "Contract"
-                        th= "date"
-                        th= "to launch"
-                tbody
-                    each val, key in data
-                        if new Date(val.date) - new Date() < 0
-                            tr(class="table-danger", style="color: gray")
-                                td= val.name
-                                td= val.contract
-                                td= new Date(val.date)
-                                td= countDays(new Date(val.date) - new Date())
-                        else if new Date(val.date) - new Date() <= 86400000
-                            tr(class="table-warning", style="color: green;font-weight: bold")
-                                td= val.name
-                                td= val.contract
-                                td= new Date(val.date)
-                                td= countDays(new Date(val.date) - new Date())
-                        else
+        div(class="container")
+            div(class="row")
+                div(class="col-12")
+                    a(href="/create")= "Create"
+                div(class="col-2")
+                div(class="col-8")
+                    table(class="table table-striped table-hover")
+                        thead
                             tr
-                                td= val.name
-                                td= val.contract
-                                td= new Date(val.date)
-                                td= countDays(new Date(val.date) - new Date())
-        div(class="col-2")
+                                th= "Name"
+                                th= "Contract"
+                                th= "date"
+                                th= "to launch"
+                        tbody
+                            each val, key in data
+                                if new Date(val.date) - new Date() < 0
+                                    tr(class="table-danger", style="color: gray")
+                                        td= val.name
+                                        td= val.contract
+                                        td= new Date(val.date)
+                                        td= countDays(new Date(val.date) - new Date())
+                                else if new Date(val.date) - new Date() <= 86400000
+                                    tr(class="table-warning", style="color: green;font-weight: bold")
+                                        td= val.name
+                                        td= val.contract
+                                        td= new Date(val.date)
+                                        td= countDays(new Date(val.date) - new Date())
+                                else
+                                    tr
+                                        td= val.name
+                                        td= val.contract
+                                        td= new Date(val.date)
+                                        td= countDays(new Date(val.date) - new Date())
+                div(class="col-2")
