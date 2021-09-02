@@ -61,6 +61,7 @@ app.post("/create", (req, res) => {
     name: req.body.name,
     contract: req.body.contract,
     date: req.body.date,
+    description: req.body.description,
   });
   res.render("create", { isPost: { success: true } });
 });

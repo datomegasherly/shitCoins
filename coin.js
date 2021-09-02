@@ -20,6 +20,7 @@ class Coin {
       name: mongoose.Schema.Types.String,
       contract: mongoose.Schema.Types.String,
       date: mongoose.Schema.Types.String,
+      description: mongoose.Schema.Types.String,
     });
     this.model = mongoose.model("Coin", schema);
   }
@@ -27,7 +28,7 @@ class Coin {
     const Coin = this.model;
     const prevData = await Coin.findOneAndUpdate(
       { contract: data.contract },
-      { name: data.name, date: data.date }
+      { name: data.name, date: data.date, description: data.description }
     );
     if (!prevData) {
       await Coin.create(data);

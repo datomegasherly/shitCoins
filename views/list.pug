@@ -18,6 +18,7 @@ html
                                 th= "Contract"
                                 th= "date"
                                 th= "to launch"
+                                th= "description"
                         tbody
                             each val, key in data
                                 if new Date(val.date) - new Date() < 0
@@ -26,16 +27,19 @@ html
                                         td= val.contract
                                         td= new Date(val.date)
                                         td= countDays(new Date(val.date) - new Date())
+                                        td= val.description
                                 else if new Date(val.date) - new Date() <= 86400000
                                     tr(class="table-warning", style="color: green;font-weight: bold")
                                         td= val.name
                                         td= val.contract
                                         td= new Date(val.date)
                                         td= countDays(new Date(val.date) - new Date())
+                                        td= val.description
                                 else
                                     tr
                                         td= val.name
                                         td= val.contract
                                         td= new Date(val.date)
                                         td= countDays(new Date(val.date) - new Date())
+                                        td= val.description
                 div(class="col-2")
