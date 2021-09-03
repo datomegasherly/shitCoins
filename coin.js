@@ -33,7 +33,9 @@ class Coin {
       { name: data.name, date: data.date, description: data.description }
     );
     if (!prevData) {
-      return await fetch(
+      await Coin.create(data);
+      return true;
+      /*return await fetch(
         `https://api.bscscan.com/api?module=contract&action=getabi&address=${data.contract}&apikey=3ZTMKUPTJ9VVF34R4EXGYPJHNA2RWZCGNT`
       ).then(async (response) => {
         if (response.data.status == 1) {
@@ -42,7 +44,7 @@ class Coin {
         } else {
           return false;
         }
-      });
+      });*/
     } else {
       return true;
     }
