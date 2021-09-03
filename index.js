@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const Coin = require("./coin");
 
-const port = 4040;
+const port = 8020;
 
 const coin = new Coin();
 
@@ -40,11 +40,15 @@ app.get("/", async (req, res) => {
 app.get("/create", (req, res) => {
   res.render("create", { isPost: {} });
 });
+app.get("/delete", (req, res) => {
+  console.log(res.body);
+  //coin.delete()
+});
 /*app.get("/deleteAll", (req, res) => {
   coin.delete();
   res.render("create", { isPost: {} });
 });*/
-app.post("/create", (req, res) => {
+app.post("/create", async (req, res) => {
   if (req.body.name === "") {
     res.render("create", { isPost: { error: true } });
     return;
@@ -57,13 +61,17 @@ app.post("/create", (req, res) => {
     res.render("create", { isPost: { error: true } });
     return;
   }
-  coin.create({
+  const c = await coin.create({
     name: req.body.name,
     contract: req.body.contract,
     date: req.body.date,
     description: req.body.description,
   });
-  res.render("create", { isPost: { success: true } });
+  if (c) {
+    res.render("create", { isPost: { success: true } });
+  } else {
+    res.render("create", { isPost: { error: true } });
+  }
 });
 
 app.listen(port, () => {

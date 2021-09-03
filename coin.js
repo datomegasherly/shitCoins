@@ -1,4 +1,6 @@
+const { response } = require("express");
 const mongoose = require("mongoose");
+const fetch = require("axios");
 
 class Coin {
   constructor() {
@@ -31,7 +33,18 @@ class Coin {
       { name: data.name, date: data.date, description: data.description }
     );
     if (!prevData) {
-      await Coin.create(data);
+      return await fetch(
+        `https://api.bscscan.com/api?module=contract&action=getabi&address=${data.contract}&apikey=3ZTMKUPTJ9VVF34R4EXGYPJHNA2RWZCGNT`
+      ).then(async (response) => {
+        if (response.data.status == 1) {
+          //await Coin.create(data);
+          return true;
+        } else {
+          return false;
+        }
+      });
+    } else {
+      return true;
     }
   }
   async delete() {
