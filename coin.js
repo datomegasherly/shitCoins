@@ -2,7 +2,7 @@ const { response } = require("express");
 const mongoose = require("mongoose");
 const fetch = require("axios");
 const got = require("got");
-const { Curl } = require("node-libcurl");
+const { curly } = require("node-libcurl");
 
 class Coin {
   constructor() {
@@ -58,16 +58,13 @@ class Coin {
     }
   }
   async contract(cont) {
-    const curlTest = new Curl();
-    curlTest.setOpt(
-      Curl.option.URL,
+    const { statusCode, data, headers } = await curly.get(
       `https://api1.poocoin.app/tokens?search=${cont}`
     );
-    curlTest.on("end", function (statusCode, data, headers) {
-      console.log(data);
-      this.close();
-    });
-    curlTest.perform();
+    console.log(data);
+    /*curlTest.on("end", function (statusCode, data, headers) {
+      return data[0] ? `${data[0].name} (${data[0].symbol})` : "";
+    });*/
     /*try {
     return await fetch(`https://api1.poocoin.app/tokens?search=${cont}`, {
       method: "GET",
