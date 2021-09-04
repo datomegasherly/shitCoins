@@ -2,6 +2,7 @@ html
     head
         title= "Create"
         link(rel="stylesheet", href="/css/bootstrap.min.css")
+        script(src="/js/updateContract.js")
     body
         div(style="padding-top: 50px")
             if isPost.error 
@@ -20,24 +21,49 @@ html
                             div(class="col-6", style="border: 1px solid;padding: 5px")
                                 div(style="margin-top: 5px;margin-bottom: 5px",class="row")
                                     div(class="col-sm-4")
-                                        div= "Name:"
-                                    div(class="col-sm-8")
-                                        input(type="text", value="",class="form-control", name="name")
-                                div(style="margin-top: 5px;margin-bottom: 5px",class="row")
-                                    div(class="col-sm-4")
                                         div= "Contract:"
                                     div(class="col-sm-8")
-                                        input(type="text", value="",class="form-control", name="contract")
+                                        if(data && data.contract)
+                                            input(type="text", value=data.contract,class="form-control", name="contract")
+                                        else
+                                            input(type="text", value="",class="form-control", name="contract")
+                                div(style="margin-top: 5px;margin-bottom: 5px",class="row")
+                                    div(class="col-sm-4")
+                                        div= "Name:"
+                                    div(class="col-sm-8")
+                                        if(data && data.name)
+                                            input(type="text", value=data.name,class="form-control", name="name")
+                                        else
+                                            input(type="text", value="",class="form-control", name="name")
                                 div(style="margin-top: 5px;margin-bottom: 5px",class="row")
                                     div(class="col-sm-4")
                                         div= "Date:"
                                     div(class="col-sm-8")
-                                        input(type="datetime-local",class="form-control", name="date")
+                                        if(data && data.date)
+                                            input(type="datetime-local",class="form-control", name="date", value=data.date)
+                                        else
+                                            input(type="datetime-local",class="form-control", name="date")
+                                div(style="margin-top: 5px;margin-bottom: 5px",class="row")
+                                    div(class="col-sm-4")
+                                        div= "Link:"
+                                    div(class="col-sm-8")
+                                        if(data && data.link)
+                                            input(type="text", value=data.link,class="form-control", name="link")
+                                        else
+                                            input(type="text", value="",class="form-control", name="link")
                                 div(style="margin-top: 5px;margin-bottom: 5px",class="row")
                                     div(class="col-sm-4")
                                         div= "Description:"
                                     div(class="col-sm-8")
-                                        input(type="text", value="",class="form-control", name="description")
+                                        if(data && data.description)
+                                            input(type="text", value=data.description,class="form-control", name="description")
+                                        else
+                                            input(type="text", value="",class="form-control", name="description")
+                                div(style="margin-top: 5px;margin-bottom: 5px",class="row")
+                                    div(class="col-sm-4")
+                                        div= "Code:"
+                                    div(class="col-sm-8")
+                                        input(type="password", value="",class="form-control", name="code")
                                 div(style="margin-top: 5px;margin-bottom: 5px",class="row")
                                     div(class="col-sm-12")
                                         button(class="btn btn-primary", style="margin-right: 30px", type="submit")= "Create"

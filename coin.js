@@ -23,6 +23,7 @@ class Coin {
       contract: mongoose.Schema.Types.String,
       date: mongoose.Schema.Types.String,
       description: mongoose.Schema.Types.String,
+      link: mongoose.Schema.Types.String,
     });
     this.model = mongoose.model("Coin", schema);
   }
@@ -30,7 +31,12 @@ class Coin {
     const Coin = this.model;
     const prevData = await Coin.findOneAndUpdate(
       { contract: data.contract },
-      { name: data.name, date: data.date, description: data.description }
+      {
+        name: data.name,
+        date: data.date,
+        description: data.description,
+        link: data.link,
+      }
     );
     if (!prevData) {
       await Coin.create(data);
@@ -49,13 +55,45 @@ class Coin {
       return true;
     }
   }
+  async contract(cont) {
+    try {
+      return await fetch(`https://api1.poocoin.app/tokens?search=${cont}`, {
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          return data[0] ? `${data[0].name} (${data[0].symbol})` : "";
+        });
+    } catch (err) {
+      return "";
+    }
+  }
   async delete() {
     const Coin = this.model;
     await Coin.deleteMany({});
   }
-  async get() {
+  async get(search = "") {
     const Coin = this.model;
-    return await Coin.find().sort({ date: "asc" });
+    if (search === "") {
+      return await Coin.find().sort({ date: "asc" });
+    } else {
+      return await Coin.find({
+        $or: [
+          {
+            name: { $regex: ".*" + search + ".*" },
+          },
+          {
+            contract: { $regex: ".*" + search + ".*" },
+          },
+          {
+            description: { $regex: ".*" + search + ".*" },
+          },
+        ],
+      }).sort({ date: "asc" });
+    }
   }
 }
 

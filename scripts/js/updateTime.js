@@ -4,6 +4,7 @@ setTimeout(() => {
 
 setTimeout(() => {
   const cbox = document.querySelectorAll(".delete-btn");
+  const searchBtn = document.querySelector(".search_button");
 
   for (let i = 0; i < cbox.length; i++) {
     cbox[i].addEventListener("click", function (ev) {
@@ -21,4 +22,12 @@ setTimeout(() => {
       }
     });
   }
+  searchBtn.addEventListener("click", function (ev) {
+    const search = document.querySelector("input[name=search]").value;
+    if (search === "") {
+      window.location.pathname = `/`;
+      return;
+    }
+    window.location.pathname = `/search/${search}`;
+  });
 }, 500);
