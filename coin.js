@@ -96,13 +96,13 @@ class Coin {
       return await Coin.find({
         $or: [
           {
-            name: { $regex: ".*" + search + ".*" },
+            name: { $regex: ".*" + search + ".*", $options: "i" },
           },
           {
-            contract: { $regex: ".*" + search + ".*" },
+            contract: { $regex: ".*" + search + ".*", $options: "i" },
           },
           {
-            description: { $regex: ".*" + search + ".*" },
+            description: { $regex: ".*" + search + ".*", $options: "i" },
           },
         ],
       }).sort({ date: "asc" });
