@@ -1,6 +1,8 @@
 const { response } = require("express");
 const mongoose = require("mongoose");
 const fetch = require("axios");
+const got = require("got");
+const { Curl } = require("node-libcurl");
 
 class Coin {
   constructor() {
@@ -56,20 +58,34 @@ class Coin {
     }
   }
   async contract(cont) {
-    try {
-      return await fetch(`https://api1.poocoin.app/tokens?search=${cont}`, {
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          return data[0] ? `${data[0].name} (${data[0].symbol})` : "";
-        });
+    const curlTest = new Curl();
+    curlTest.setOpt(
+      Curl.option.URL,
+      `https://api1.poocoin.app/tokens?search=${cont}`
+    );
+    curlTest.on("end", function (statusCode, data, headers) {
+      console.log(data);
+      this.close();
+    });
+    curlTest.perform();
+    /*try {
+    return await fetch(`https://api1.poocoin.app/tokens?search=${cont}`, {
+      method: "GET",
+      mode: "no-cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+      credentials: "same-origin",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        return data[0] ? `${data[0].name} (${data[0].symbol})` : "";
+      });
     } catch (err) {
       return "";
-    }
+    }*/
   }
   async delete() {
     const Coin = this.model;
