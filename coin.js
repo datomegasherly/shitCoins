@@ -61,7 +61,7 @@ class Coin {
     const { statusCode, data, headers } = await curly.get(
       `https://api1.poocoin.app/tokens?search=${cont}`
     );
-    console.log(data);
+    return data[0] ? `${data[0].name} (${data[0].symbol})` : "";
     /*curlTest.on("end", function (statusCode, data, headers) {
       return data[0] ? `${data[0].name} (${data[0].symbol})` : "";
     });*/
