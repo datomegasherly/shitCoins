@@ -4,6 +4,7 @@ setTimeout(() => {
 
 setTimeout(() => {
   const cbox = document.querySelectorAll(".delete-btn");
+  const ebox = document.querySelectorAll(".edit-btn");
   const searchBtn = document.querySelector(".search_button");
 
   for (let i = 0; i < cbox.length; i++) {
@@ -20,6 +21,12 @@ setTimeout(() => {
             window.location.reload();
           });
       }
+    });
+  }
+  for (let i = 0; i < ebox.length; i++) {
+    ebox[i].addEventListener("click", function (ev) {
+      window.location.pathname = `/create/${ev.target.id}`;
+      return;
     });
   }
   searchBtn.addEventListener("click", function (ev) {

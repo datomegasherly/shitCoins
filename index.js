@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const Coin = require("./coin");
 const { toChecksumAddress } = require("ethereum-checksum-address");
+const { pass } = require("./config");
 
 const port = 8020;
 
@@ -69,6 +70,11 @@ app.post("/checkContract", async (req, res) => {
 app.get("/create", (req, res) => {
   res.render("create", { isPost: {} });
 });
+app.get("/create/:id", async (req, res) => {
+  const id = req.params.id.replace(/[\W+]/g, "");
+  const data = await coin.getOne(id);
+  res.render("create", { isPost: {}, data: data[0] ? data[0] : {} });
+});
 app.get("/delete", (req, res) => {
   console.log(res.body);
   //coin.delete()
@@ -91,7 +97,7 @@ app.post("/create", async (req, res) => {
     res.render("create", { isPost: { error: true }, data: req.body });
     return;
   }
-  if (req.body.code !== "123" && req.body.code !== "456") {
+  if (pass.indexOf(req.body.code) < 0) {
     res.render("create", { isPost: { error: true }, data: req.body });
     return;
   }

@@ -56,6 +56,7 @@ html
                                             a(href="https://bscscan.com/token/"+val.contract, target="_blank", style="margin-right: 5px;")= "BSCScan"
                                         td
                                             button(class="btn btn-danger delete-btn", id=val._id)= "Delete"
+                                            button(class="btn btn-warning edit-btn", id=val.contract)= "Edit"
                                 else if new Date(val.date) - new Date() <= 86400000
                                     tr(class="table-warning", style="color: green;font-weight: bold")
                                         td
@@ -74,7 +75,8 @@ html
                                             a(href="https://poocoin.app/tokens/"+val.contract, target="_blank", style="margin-right: 5px;")= "PooCoin"
                                             br
                                             a(href="https://bscscan.com/token/"+val.contract, target="_blank", style="margin-right: 5px;")= "BSCScan"
-                                        td= "-"
+                                        td
+                                            button(class="btn btn-warning edit-btn", id=val.contract)= "Edit"
                                 else
                                     tr
                                         td
@@ -93,5 +95,6 @@ html
                                             a(href="https://poocoin.app/tokens/"+val.contract, target="_blank", style="margin-right: 5px;")= "PooCoin"
                                             br
                                             a(href="https://bscscan.com/token/"+val.contract, target="_blank", style="margin-right: 5px;")= "BSCScan"
-                                        td= "-"
+                                        td
+                                            button(class="btn btn-warning edit-btn", id=val.contract)= "Edit"
                 div(class="col-1")

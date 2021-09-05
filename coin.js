@@ -88,6 +88,10 @@ class Coin {
     const Coin = this.model;
     await Coin.deleteMany({});
   }
+  async getOne(contract) {
+    const Coin = this.model;
+    return await Coin.find({ contract });
+  }
   async get(search = "") {
     const Coin = this.model;
     if (search === "") {
