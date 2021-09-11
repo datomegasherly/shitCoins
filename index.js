@@ -5,7 +5,7 @@ const Coin = require("./coin");
 const { toChecksumAddress } = require("ethereum-checksum-address");
 const { pass, smartAPIIMG } = require("./config");
 const socketRouter = require("./socket");
-const Cassandra = require("./cassandra");
+//const Cassandra = require("./cassandra");
 
 const port = 8020;
 
@@ -47,11 +47,11 @@ const getImage = (contract) => {
   }
 };
 
-app.get("/cassandra", async (req, res) => {
+/*app.get("/cassandra", async (req, res) => {
   const cassandra = new Cassandra();
   const result = await cassandra.select();
   res.json(result);
-});
+});*/
 
 app.get("/", async (req, res) => {
   const data = await coin.get();
