@@ -25,6 +25,7 @@ class Coin {
       name: mongoose.Schema.Types.String,
       contract: mongoose.Schema.Types.String,
       date: mongoose.Schema.Types.String,
+      launchdate: mongoose.Schema.Types.String,
       description: mongoose.Schema.Types.String,
       link: mongoose.Schema.Types.String,
     });
@@ -37,6 +38,7 @@ class Coin {
       {
         name: data.name,
         date: data.date,
+        launchdate: data.launchdate,
         description: data.description,
         link: data.link,
       }

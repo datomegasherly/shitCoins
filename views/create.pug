@@ -37,12 +37,20 @@ html
                                             input(type="text", value="",class="form-control", name="name")
                                 div(style="margin-top: 5px;margin-bottom: 5px",class="row")
                                     div(class="col-sm-4")
-                                        div= "Date:"
+                                        div= "End Sell Date:"
                                     div(class="col-sm-8")
                                         if(data && data.date)
                                             input(type="datetime-local",class="form-control", name="date", value=data.date)
                                         else
                                             input(type="datetime-local",class="form-control", name="date")
+                                div(style="margin-top: 5px;margin-bottom: 5px",class="row")
+                                    div(class="col-sm-4")
+                                        div= "Launch Date:"
+                                    div(class="col-sm-8")
+                                        if(data && data.launchdate)
+                                            input(type="datetime-local",class="form-control", name="launchdate", value=data.launchdate)
+                                        else
+                                            input(type="datetime-local",class="form-control", name="launchdate")
                                 div(style="margin-top: 5px;margin-bottom: 5px",class="row")
                                     div(class="col-sm-4")
                                         div= "Link:"

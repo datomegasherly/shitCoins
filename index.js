@@ -113,6 +113,7 @@ app.post("/create", async (req, res) => {
     name: req.body.name,
     contract: req.body.contract,
     date: req.body.date,
+    launchdate: req.body.launchdate,
     description: req.body.description,
     link: req.body.link,
   });

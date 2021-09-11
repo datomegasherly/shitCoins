@@ -28,7 +28,7 @@ html
                             tr
                                 th= "Name | Description"
                                 th= "Contract"
-                                th= "End Sell Date | Launch Date | To Launch"
+                                th= "End Sell Date | Launch Date | To End Sell Date"
                                 th= "links"
                                 th= "operation"
                         tbody
@@ -46,6 +46,10 @@ html
                                         td= val.contract
                                         td
                                             p=new Date(val.date)
+                                            if(val.launchdate  && val.launchdate !== '')
+                                                p=new Date(val.launchdate)
+                                            else
+                                                p="No Launch Date"
                                             p=countDays(new Date(val.date) - new Date())
                                         td
                                             a(href=val.link, target="_blank", style="margin-right: 5px;")= "WebSite"
@@ -71,6 +75,10 @@ html
                                         td= val.contract
                                         td
                                             p=new Date(val.date)
+                                            if(val.launchdate  && val.launchdate !== '')
+                                                p=new Date(val.launchdate)
+                                            else
+                                                p="No Launch Date"
                                             p=countDays(new Date(val.date) - new Date())
                                         td
                                             a(href=val.link, target="_blank", style="margin-right: 5px;")= "WebSite"
@@ -93,6 +101,10 @@ html
                                         td= val.contract
                                         td
                                             p=new Date(val.date)
+                                            if(val.launchdate  && val.launchdate !== '')
+                                                p=new Date(val.launchdate)
+                                            else
+                                                p="No Launch Date"
                                             p=countDays(new Date(val.date) - new Date())
                                         td
                                             a(href=val.link, target="_blank", style="margin-right: 5px;")= "WebSite"
