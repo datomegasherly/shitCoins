@@ -22,16 +22,13 @@ html
                 div(class="col-3", style="text-align: center")
         div(class="container-fluid", style="margin-top:10px;")
             div(class="row")
-                div(class="col-1")
-                div(class="col-10")
+                div(class="col-12")
                     table(class="table table-striped table-hover")
                         thead
                             tr
-                                th= "Name"
+                                th= "Name | Description"
                                 th= "Contract"
-                                th= "date"
-                                th= "to launch"
-                                th= "description"
+                                th= "End Sell Date | Launch Date | To Launch"
                                 th= "links"
                                 th= "operation"
                         tbody
@@ -39,15 +36,17 @@ html
                                 if new Date(val.date) - new Date() < 0
                                     tr(class="table-danger", style="color: gray")
                                         td
-                                            div(style="display: flex")
-                                                div
-                                                    if(getImage(val.contract))
-                                                        img(src=getImage(val.contract), style="width: 30px;height: 30px;margin-right: 3px")
-                                                div= val.name
+                                            p
+                                                div(style="display: flex")
+                                                    div
+                                                        if(getImage(val.contract))
+                                                            img(src=getImage(val.contract), style="width: 30px;height: 30px;margin-right: 3px")
+                                                    div= val.name
+                                            p=val.description
                                         td= val.contract
-                                        td= new Date(val.date)
-                                        td= countDays(new Date(val.date) - new Date())
-                                        td= val.description
+                                        td
+                                            p=new Date(val.date)
+                                            p=countDays(new Date(val.date) - new Date())
                                         td
                                             a(href=val.link, target="_blank", style="margin-right: 5px;")= "WebSite"
                                             br
@@ -55,20 +54,24 @@ html
                                             br
                                             a(href="https://bscscan.com/token/"+val.contract, target="_blank", style="margin-right: 5px;")= "BSCScan"
                                         td
-                                            button(class="btn btn-danger delete-btn", id=val._id)= "Delete"
-                                            button(class="btn btn-warning edit-btn", id=val.contract)= "Edit"
+                                            p
+                                                button(class="btn btn-danger delete-btn", id=val._id)= "Delete"
+                                            p
+                                                button(class="btn btn-warning edit-btn", id=val.contract)= "Edit"
                                 else if new Date(val.date) - new Date() <= 86400000
                                     tr(class="table-warning", style="color: green;font-weight: bold")
                                         td
-                                            div(style="display: flex")
-                                                div
-                                                    if(getImage(val.contract))
-                                                        img(src=getImage(val.contract), style="width: 30px;height: 30px;margin-right: 3px")
-                                                div= val.name
+                                            p
+                                                div(style="display: flex")
+                                                    div
+                                                        if(getImage(val.contract))
+                                                            img(src=getImage(val.contract), style="width: 30px;height: 30px;margin-right: 3px")
+                                                    div= val.name
+                                            p=val.description
                                         td= val.contract
-                                        td= new Date(val.date)
-                                        td= countDays(new Date(val.date) - new Date())
-                                        td= val.description
+                                        td
+                                            p=new Date(val.date)
+                                            p=countDays(new Date(val.date) - new Date())
                                         td
                                             a(href=val.link, target="_blank", style="margin-right: 5px;")= "WebSite"
                                             br
@@ -80,15 +83,17 @@ html
                                 else
                                     tr
                                         td
-                                            div(style="display: flex")
-                                                div
-                                                    if(getImage(val.contract))
-                                                        img(src=getImage(val.contract), style="width: 30px;height: 30px;margin-right: 3px")
-                                                div= val.name
+                                            p
+                                                div(style="display: flex")
+                                                    div
+                                                        if(getImage(val.contract))
+                                                            img(src=getImage(val.contract), style="width: 30px;height: 30px;margin-right: 3px")
+                                                    div= val.name
+                                            p=val.description
                                         td= val.contract
-                                        td= new Date(val.date)
-                                        td= countDays(new Date(val.date) - new Date())
-                                        td= val.description
+                                        td
+                                            p=new Date(val.date)
+                                            p=countDays(new Date(val.date) - new Date())
                                         td
                                             a(href=val.link, target="_blank", style="margin-right: 5px;")= "WebSite"
                                             br
@@ -97,4 +102,3 @@ html
                                             a(href="https://bscscan.com/token/"+val.contract, target="_blank", style="margin-right: 5px;")= "BSCScan"
                                         td
                                             button(class="btn btn-warning edit-btn", id=val.contract)= "Edit"
-                div(class="col-1")
