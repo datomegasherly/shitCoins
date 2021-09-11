@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const fetch = require("axios");
 const got = require("got");
 const { curly } = require("node-libcurl");
+const { smartAPI } = require("./config");
 
 class Coin {
   constructor() {
@@ -58,9 +59,7 @@ class Coin {
     }
   }
   async contract(cont) {
-    const { statusCode, data, headers } = await curly.get(
-      `https://api1.poocoin.app/tokens?search=${cont}`
-    );
+    const { statusCode, data, headers } = await curly.get(`${smartAPI}${cont}`);
     return data[0] ? `${data[0].name} (${data[0].symbol})` : "";
     /*curlTest.on("end", function (statusCode, data, headers) {
       return data[0] ? `${data[0].name} (${data[0].symbol})` : "";

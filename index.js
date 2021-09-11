@@ -1,8 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const Coin = require("./coin");
 const { toChecksumAddress } = require("ethereum-checksum-address");
-const { pass } = require("./config");
+const { pass, smartAPIIMG } = require("./config");
+const socketRouter = require("./socket");
+const Cassandra = require("./cassandra");
 
 const port = 8020;
 
@@ -10,6 +13,7 @@ const coin = new Coin();
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/scripts"));
@@ -37,13 +41,17 @@ const countDays = (t) => {
 
 const getImage = (contract) => {
   try {
-    return `https://r.poocoin.app/smartchain/assets/${toChecksumAddress(
-      contract
-    )}/logo.png`;
+    return `${smartAPIIMG}/${toChecksumAddress(contract)}/logo.png`;
   } catch (err) {
     return false;
   }
 };
+
+app.get("/cassandra", async (req, res) => {
+  const cassandra = new Cassandra();
+  const result = await cassandra.select();
+  res.json(result);
+});
 
 app.get("/", async (req, res) => {
   const data = await coin.get();
@@ -114,6 +122,8 @@ app.post("/create", async (req, res) => {
     res.render("create", { isPost: { error: true }, data: req.body });
   }
 });
+
+app.use("/socket", socketRouter);
 
 app.listen(port, () => {
   console.log(`The app is started on port ${port}`);
